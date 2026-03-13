@@ -1,148 +1,27 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aqtiva AI | المنصة الذكية</title>
-    
-    <link rel="icon" type="image/png" href="assets/aqtiva-logo.jpg">
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --p: #8b5cf6; --s: #3b82f6; --a: #10b981; --bg: #020617;
-            --card: rgba(15, 23, 42, 0.9); --text: #f1f5f9;
-        }
+<title>Aqtiva AI</title>
 
-        * { box-sizing: border-box; transition: 0.3s; }
-        body {
-            margin: 0; background: var(--bg); color: var(--text);
-            font-family: 'Noto Kufi Arabic', sans-serif;
-            display: flex; flex-direction: column; min-height: 100vh;
-            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 70%);
-        }
+<link rel="stylesheet" href="style.css">
 
-        /* الهيدر والشعار */
-        header { text-align: center; padding: 40px 20px; }
-        .logo-box { position: relative; display: inline-block; }
-        .main-logo { width: 140px; filter: drop-shadow(0 0 20px var(--p)); border-radius: 50%; }
-        .brand-title {
-            font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 3rem;
-            margin: 15px 0 0; background: linear-gradient(to left, var(--p), var(--s), var(--a));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        /* حاوية التطبيق */
-        .app-core {
-            flex: 1; max-width: 900px; width: 95%; margin: 0 auto 40px;
-            background: var(--card); border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 30px; padding: 30px; backdrop-filter: blur(20px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        /* منطقة العرض (الشات) */
-        #display-screen {
-            height: 350px; overflow-y: auto; background: rgba(0,0,0,0.3);
-            border-radius: 20px; padding: 25px; border: 1px solid #1e293b;
-            font-family: monospace; font-size: 1rem; line-height: 1.6; margin-bottom: 25px;
-        }
-        .msg-bot { color: var(--a); margin-bottom: 10px; }
-        .msg-user { color: var(--s); margin-bottom: 10px; border-right: 2px solid var(--s); padding-right: 10px; }
-
-        /* منطقة الإدخال */
-        .input-group { display: flex; gap: 15px; }
-        input {
-            flex: 1; padding: 18px; border-radius: 15px; border: 1px solid #334155;
-            background: #000; color: #fff; outline: none; font-size: 1.1rem;
-        }
-        input:focus { border-color: var(--p); box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); }
-
-        button {
-            padding: 0 40px; border-radius: 15px; border: none;
-            background: linear-gradient(135deg, var(--p), var(--s));
-            color: white; font-weight: bold; cursor: pointer; font-size: 1.1rem;
-        }
-        button:hover { transform: scale(1.05); filter: brightness(1.1); }
-
-        footer { text-align: center; padding: 20px; font-size: 0.8rem; color: #475569; border-top: 1px solid rgba(255,255,255,0.05); }
-    </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo-box">
-            <img src="assets/aqtiva-logo.jpg" alt="Aqtiva Logo" class="main-logo">
-        </div>
-        <h1 class="brand-title">Aqtiva AI</h1>
-    </header>
+<h1>Aqtiva AI</h1>
 
-    <main class="app-core">
-        <div id="display-screen">
-            <div class="msg-bot">> نظام Aqtiva جاهز. متصل بـ Firebase عبر السحابة.</div>
-        </div>
+<div id="chat"></div>
 
-        <div class="input-group">
-            <input type="text" id="userInput" placeholder="اطلب من الذكاء الاصطناعي..." autocomplete="off">
-            <button onclick="executeAction()">تنفيذ</button>
-        </div>
-    </main>
+<input id="message" placeholder="Ask AI...">
 
-    <footer>
-        <p>© 2026 Aqtiva AI | Host: GitHub Pages | DB: Firebase</p>
-    </footer>
+<button id="send">Send</button>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<script type="module" src="app.js"></script>
 
-        // إعدادات Firebase الخاصة بك
-        const firebaseConfig = {
-            apiKey: "AIzaSyCIx-OF2SiJN78i2Aar8R7aOt-hamri3Lw",
-            authDomain: "aqtivaai.firebaseapp.com",
-            projectId: "aqtivaai",
-            storageBucket: "aqtivaai.firebasestorage.app",
-            messagingSenderId: "10054337154",
-            appId: "1:10054337154:web:fdb32f6b7f3298b7b16a9b"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        window.executeAction = async () => {
-            const input = document.getElementById('userInput');
-            const screen = document.getElementById('display-screen');
-            if (!input.value.trim()) return;
-
-            const userText = input.value;
-            screen.innerHTML += `<div class="msg-user">أنت: ${userText}</div>`;
-            input.value = "";
-
-            try {
-                const responseText = "تم استلام الطلب. جاري المعالجة وحفظ البيانات في قاعدة بيانات Firestore...";
-                
-                // حفظ في Firebase
-                await addDoc(collection(db, "conversations"), {
-                    prompt: userText,
-                    reply: responseText,
-                    time: serverTimestamp()
-                });
-
-                setTimeout(() => {
-                    screen.innerHTML += `<div class="msg-bot">Aqtiva: ${responseText}</div>`;
-                    screen.scrollTop = screen.scrollHeight;
-                }, 600);
-
-            } catch (e) {
-                console.error("Error:", e);
-                screen.innerHTML += `<div style="color:red">خطأ في الاتصال بقاعدة البيانات.</div>`;
-            }
-        };
-
-        // تفعيل مفتاح Enter
-        document.getElementById('userInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') executeAction();
-        });
-    </script>
 </body>
+
 </html>
