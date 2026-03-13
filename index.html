@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Aqtiva AI</title>
 
@@ -12,15 +14,65 @@
 
 <body>
 
-<h1>Aqtiva AI</h1>
+<div class="app">
 
-<div id="chat"></div>
+<!-- Sidebar -->
 
-<input id="message" placeholder="Ask AI...">
+<div class="sidebar">
+
+<div class="logo">
+
+<h2>Aqtiva</h2>
+
+</div>
+
+<button class="new-chat">+ New Chat</button>
+
+<div class="history">
+
+<p>Chat History</p>
+
+<ul>
+<li>Marketing Ideas</li>
+<li>AI Coding Help</li>
+<li>Startup Plan</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- Main Chat -->
+
+<div class="chat-container">
+
+<div class="chat-header">
+
+<h3>Aqtiva AI Assistant</h3>
+
+</div>
+
+<div id="chat-box" class="chat-box">
+
+<div class="ai-message">
+Hello 👋 How can I help you today?
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input id="message" placeholder="Ask anything..." />
 
 <button id="send">Send</button>
 
-<script type="module" src="app.js"></script>
+</div>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
 
 </body>
 
