@@ -1,49 +1,35 @@
-:root {
-    --bg: #020617;
-    --card: #0f172a;
-    --primary: #8b5cf6; /* بنفسجي الشعار */
-    --secondary: #3b82f6; /* أزرق الشعار */
-    --accent: #10b981; /* أخضر الشعار */
-    --text: #f1f5f9;
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+text-align:center;
 }
 
-body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font-family: 'Noto Kufi Arabic', sans-serif;
-    display: flex; justify-content: center; align-items: center; height: 100vh;
+#chat{
+width:60%;
+margin:auto;
+height:400px;
+overflow:auto;
+background:#1e293b;
+padding:20px;
+border-radius:10px;
 }
 
-.app-container {
-    width: 90%; max-width: 800px; background: var(--card);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: 24px; padding: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+.user{
+color:#38bdf8;
+margin:10px;
 }
 
-.logo-wrapper { text-align: center; margin-bottom: 20px; }
-.main-logo { width: 120px; filter: drop-shadow(0 0 15px var(--primary)); }
-.brand-name {
-    background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    font-size: 2rem; margin: 10px 0;
+.ai{
+color:#22c55e;
+margin:10px;
 }
 
-.chat-display {
-    height: 300px; overflow-y: auto; background: rgba(0,0,0,0.3);
-    border-radius: 15px; padding: 20px; border: 1px solid #1e293b;
-    font-family: monospace; font-size: 0.9rem;
+input{
+width:50%;
+padding:10px;
 }
 
-.input-area { display: flex; gap: 10px; margin-top: 20px; }
-input {
-    flex: 1; padding: 15px; border-radius: 12px; border: 1px solid #334155;
-    background: #000; color: var(--accent); outline: none;
+button{
+padding:10px 20px;
 }
-
-button {
-    padding: 15px 30px; border-radius: 12px; border: none;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white; font-weight: bold; cursor: pointer;
-}
-
-button:hover { opacity: 0.9; transform: scale(1.02); }
-footer { text-align: center; margin-top: 20px; font-size: 0.7rem; color: #475569; }
