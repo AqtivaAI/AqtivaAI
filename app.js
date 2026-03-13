@@ -1,20 +1,33 @@
-import { askAI } from "./chat.js";
+const sendBtn = document.getElementById("send")
+const messageInput = document.getElementById("message")
+const chatBox = document.getElementById("chat-box")
 
-const button = document.getElementById("send")
+sendBtn.onclick = async ()=>{
 
-button.addEventListener("click", async ()=>{
+const message = messageInput.value
 
- const input = document.getElementById("message")
- const chat = document.getElementById("chat")
+if(message==="") return
 
- const message = input.value
+// user message
 
- chat.innerHTML += `<div class="user">${message}</div>`
+const userDiv = document.createElement("div")
+userDiv.className="user-message"
+userDiv.innerText=message
 
- const reply = await askAI(message)
+chatBox.appendChild(userDiv)
 
- chat.innerHTML += `<div class="ai">${reply}</div>`
+messageInput.value=""
 
- input.value=""
+// AI fake reply (replace with API)
 
-})
+const aiDiv = document.createElement("div")
+aiDiv.className="ai-message"
+aiDiv.innerText="Thinking..."
+
+chatBox.appendChild(aiDiv)
+
+setTimeout(()=>{
+aiDiv.innerText="AI response will appear here"
+},1000)
+
+}
